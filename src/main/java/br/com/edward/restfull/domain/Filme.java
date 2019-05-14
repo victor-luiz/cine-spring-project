@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -34,9 +36,15 @@ public class Filme {
 	@Column(name = "sinopse")
 	private String sinopse;
 	
-	public Filme(FilmeModel model) {
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
+	private Categoria categoria;
+	
+	
+	public Filme(FilmeModel model, Categoria categoria) {
 		this.nome = model.getNome();
 		this.ano = model.getAno();
 		this.sinopse = model.getSinopse();
+		this.categoria = categoria;
 	}
 }

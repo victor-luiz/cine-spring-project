@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.edward.restfull.domain.Categoria;
 import br.com.edward.restfull.domain.Filme;
 import br.com.edward.restfull.model.FilmeModel;
 import br.com.edward.restfull.repository.FilmeRepository;
+import br.com.edward.restfull.service.CategoriaService;
 import br.com.edward.restfull.service.FilmeService;
 
 @Transactional
@@ -16,11 +18,15 @@ import br.com.edward.restfull.service.FilmeService;
 public class FilmeServiceImpl implements FilmeService{
 	
 	@Autowired
+	private CategoriaService categoriaService; 
+	
+	@Autowired
 	private FilmeRepository repository;
 
 	@Override
-	public Filme cadastrar(FilmeModel model) {
-		return repository.save(new Filme(model));
+	public Filme cadastrar(FilmeModel model, Long idCategoria) {
+		Categoria categoria =  categoriaService.consultar(idCategoria);
+		return repository.save(new Filme(model, categoria));
 	}
 
 	@Override

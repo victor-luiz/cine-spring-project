@@ -12,5 +12,7 @@ public interface CategoriaService {
 	List<Categoria> listar();
 
 	Categoria remover(Long id);
+	
+	Categoria consultar(Long id);
 
 }

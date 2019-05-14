@@ -31,7 +31,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 
 	@Override
 	public Categoria remover(Long id) {
-		Categoria categoria =  repository.findById(id).orElse(null);
+		Categoria categoria = consultar(id);
 		
 		if (Objects.nonNull(categoria)) {
 			repository.delete(categoria);
@@ -39,6 +39,13 @@ public class CategoriaServiceImpl implements CategoriaService {
 		
 		return categoria;		
 	}
+
+	@Override
+	public Categoria consultar(Long id) {
+		return repository.findById(id).orElse(null);
+	}
+	
+	
 	
 	
 }
