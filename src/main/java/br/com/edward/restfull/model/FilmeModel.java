@@ -14,14 +14,18 @@ public class FilmeModel {
 	private String nome;
 	private Integer ano;
 	private String sinopse;
-	private String categoria;
+	private CategoriaModel categoria;
 	
 	public FilmeModel(Filme domain) {
 		this.id = domain.getId();
 		this.nome = domain.getNome();
 		this.ano = domain.getAno();
 		this.sinopse = Objects.nonNull(domain.getSinopse()) ? domain.getSinopse() : "-";
-		this.categoria = Objects.nonNull(domain.getCategoria()) ? domain.getCategoria().getNome() : "-";
+		this.categoria = new CategoriaModel(domain.getCategoria());
 	}
+	
+//	public String getCategoria() {
+//		return this.categoria.getNome();
+//	}
 	
 }

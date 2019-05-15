@@ -24,8 +24,8 @@ public class FilmeServiceImpl implements FilmeService{
 	private FilmeRepository repository;
 
 	@Override
-	public Filme cadastrar(FilmeModel model, Long idCategoria) {
-		Categoria categoria =  categoriaService.consultar(idCategoria);
+	public Filme cadastrar(FilmeModel model) {
+		Categoria categoria =  categoriaService.consultar(model.getCategoria().getId());
 		return repository.save(new Filme(model, categoria));
 	}
 

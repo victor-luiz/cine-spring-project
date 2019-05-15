@@ -7,6 +7,6 @@ import br.com.edward.restfull.model.FilmeModel;
 
 public interface FilmeService {
 
-	Filme cadastrar(FilmeModel model, Long idCategoria);
+	Filme cadastrar(FilmeModel model);
 	List<Filme> listar();
 }
