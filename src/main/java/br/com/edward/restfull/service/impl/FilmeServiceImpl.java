@@ -1,6 +1,7 @@
 package br.com.edward.restfull.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class FilmeServiceImpl implements FilmeService{
 	@Override
 	public List<Filme> listar() {
 		return repository.findAll();
+	}
+
+	@Override
+	public Optional<Filme> findById(Long id) {
+		return repository.findById(id);
 	}
 
 }

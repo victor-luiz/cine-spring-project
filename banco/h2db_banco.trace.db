@@ -1,3 +1,0 @@
-2019-05-13 23:48:14 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLDataException: Value too long for column """SINOPSE"" VARCHAR(255)": "STRINGDECODE('Baseado no inspirador livro de terror de Stephen King, Cemit\u00e9rio Maldito conta a hist\u00f3ria do Dr. Louis C... (339)"; SQL statement:
-insert into filme (id, ano, categoria_id, nome, sinopse) values (null, ?, ?, ?, ?) [22001-199]

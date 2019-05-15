@@ -1,5 +1,7 @@
 package br.com.edward.restfull.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Getter
 
 @Entity
-@Table(name = "tipoSala")
+@Table(name = "tipo_sala")
 public class TipoSala {
 	
 	@Id
@@ -27,13 +29,13 @@ public class TipoSala {
 	@Column(name = "nome", length = 10)
 	private String nome;
 	
-	@NotNull
+//@NotNull
 	@Column(name = "preco")
 	private Double preco;
 	
 	public TipoSala(TipoSalaModel model) {
 		this.nome = model.getNome();
-		this.preco = model.getPreco();
+		this.preco = Objects.nonNull(model.getPreco()) ? model.getPreco() : 10;
 	}
 	
 	public Double gerarMeiaEntrada() {

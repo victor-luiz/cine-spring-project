@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.edward.restfull.domain.Sala;
 import br.com.edward.restfull.domain.TipoSala;
@@ -11,6 +13,8 @@ import br.com.edward.restfull.model.SalaModel;
 import br.com.edward.restfull.repository.SalaRepository;
 import br.com.edward.restfull.service.SalaService;
 
+@Transactional
+@Service
 public class SalaServiceImpl implements SalaService{
 	
 	@Autowired
@@ -33,6 +37,11 @@ public class SalaServiceImpl implements SalaService{
 	@Override
 	public List<Sala> listar() {
 		return repository.findAll();
+	}
+
+	@Override
+	public Optional<Sala> findById(Long id) {
+		return repository.findById(id);
 	}
 
 }

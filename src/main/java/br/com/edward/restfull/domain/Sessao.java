@@ -1,7 +1,6 @@
 package br.com.edward.restfull.domain;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import br.com.edward.restfull.model.SalaModel;
+import br.com.edward.restfull.model.SessaoModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,24 +19,32 @@ import lombok.NoArgsConstructor;
 @Getter
 
 @Entity
-@Table(name = "Sala")
-public class Sala {
+@Table(name = "sessao")
+public class Sessao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
-	@Column(name = "nome", length = 10)
-	private String nome;
-	
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "tipo_sala_id")
-	private TipoSala tipo;
+    @JoinColumn(name = "filme_id")
+	private Filme filme;
 	
-	public Sala(SalaModel model, TipoSala tipoSala) {
-		
-		this.nome = model.getNome();
-		this.tipo = tipoSala;
+	@NotNull
+	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "sala_id")
+	private Sala sala;
+	
+	@NotNull
+	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "audio_id")
+	private Audio audio;
+	
+	public Sessao(SessaoModel model, Filme filme, Sala sala, Audio audio) {
+		this.filme = filme;
+		this.sala = sala;
+		this.audio = audio;
 	}
+
 }

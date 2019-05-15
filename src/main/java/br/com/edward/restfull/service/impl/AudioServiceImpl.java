@@ -1,6 +1,7 @@
 package br.com.edward.restfull.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -27,6 +28,11 @@ public class AudioServiceImpl implements AudioService {
 	@Override
 	public List<Audio> listar() {
 		return repository.findAll();
+	}
+	
+	@Override
+	public Optional<Audio> findById(Long id){
+		return repository.findById(id);
 	}
 	
 }
