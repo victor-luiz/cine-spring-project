@@ -27,7 +27,16 @@ public class TipoSala {
 	@Column(name = "nome", length = 10)
 	private String nome;
 	
+	@NotNull
+	@Column(name = "preco")
+	private Double preco;
+	
 	public TipoSala(TipoSalaModel model) {
 		this.nome = model.getNome();
+		this.preco = model.getPreco();
+	}
+	
+	public Double gerarMeiaEntrada() {
+		return this.preco / 2;
 	}
 }

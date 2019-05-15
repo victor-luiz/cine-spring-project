@@ -1,6 +1,7 @@
 package br.com.edward.restfull.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import br.com.edward.restfull.service.TipoSalaService;
 public class TipoSalaServiceImpl implements TipoSalaService{
 
 	@Autowired
-	TipoSalaRepository repository; 
+	TipoSalaRepository repository;
 	
 	@Override
 	public TipoSala adicionar(TipoSalaModel model) {
@@ -28,5 +29,7 @@ public class TipoSalaServiceImpl implements TipoSalaService{
 		return repository.findAll();
 	}
 	
-	
+	public Optional<TipoSala> findById(Long id){
+		return repository.findById(id);		
+	}
 }

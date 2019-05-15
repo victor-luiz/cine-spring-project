@@ -2,6 +2,8 @@ package br.com.edward.restfull.model;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.edward.restfull.domain.Filme;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,8 +26,13 @@ public class FilmeModel {
 		this.categoria = new CategoriaModel(domain.getCategoria());
 	}
 	
-//	public String getCategoria() {
-//		return this.categoria.getNome();
-//	}
+	@JsonIgnore
+	public Long getIdCategoria() {
+		return this.categoria.getId();
+	}
+	
+	public String getCategoria() {
+		return this.categoria.getNome();
+	}
 	
 }

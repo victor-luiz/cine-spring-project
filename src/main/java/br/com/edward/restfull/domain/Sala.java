@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import br.com.edward.restfull.model.FilmeModel;
+import br.com.edward.restfull.model.SalaModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,33 +20,24 @@ import lombok.NoArgsConstructor;
 @Getter
 
 @Entity
-@Table(name = "filme")
-public class Filme {
+@Table(name = "Sala")
+public class Sala {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
-	@Column(name = "nome", length = 124)
+	@Column(name = "nome", length = 10)
 	private String nome;
 	
-	@NotNull
-	@Column(name = "ano")
-	private Integer ano;
-	
-	@Column(name = "sinopse")
-	private String sinopse;
-	
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoria_id")
-	private Categoria categoria;
+    @JoinColumn(name = "tipoSala_id")
+	private TipoSala tipo;
 	
-	
-	public Filme(FilmeModel model, Categoria categoria) {
+	public Sala(SalaModel model, TipoSala tipoSala) {
+		
 		this.nome = model.getNome();
-		this.ano = model.getAno();
-		this.sinopse = model.getSinopse();
-		this.categoria = categoria;
+		this.tipo = tipoSala;
 	}
 }
