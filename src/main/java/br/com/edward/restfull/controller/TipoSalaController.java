@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.edward.restfull.model.AudioModel;
-import br.com.edward.restfull.service.AudioService;
+import br.com.edward.restfull.model.TipoSalaModel;
+import br.com.edward.restfull.service.TipoSalaService;
 
 @RestController
-@RequestMapping("/audio")
-public class AudioController {
+@RequestMapping("/tipo-sala")
+public class TipoSalaController {
 	
 	@Autowired
-	private AudioService service;
+	TipoSalaService service;
 	
 	@PostMapping("/adicionar")
-	public AudioModel adicionar(@RequestBody AudioModel model) {
-		return new AudioModel(service.adicionar(model));
-		//return model;
+	public TipoSalaModel adicionar(@RequestBody TipoSalaModel model) {
+		return new TipoSalaModel(service.adicionar(model));
 	}
 	
 	@GetMapping("/listar")
-	public List<AudioModel> listar(){
-		return service.listar().stream().map(AudioModel::new).collect(Collectors.toList());
+	public List<TipoSalaModel> adicionar() {
+		return service.listar().stream().map(TipoSalaModel::new).collect(Collectors.toList());
 	}
+	
 }

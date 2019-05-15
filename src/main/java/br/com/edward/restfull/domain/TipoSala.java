@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import br.com.edward.restfull.model.AudioModel;
+import br.com.edward.restfull.model.TipoSalaModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 @Getter
 
 @Entity
-@Table(name = "audio")
-public class Audio {
+@Table(name = "tipoSala")
+public class TipoSala {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Audio {
 	@Column(name = "nome", length = 10)
 	private String nome;
 	
-	public Audio(AudioModel model){
+	public TipoSala(TipoSalaModel model) {
 		this.nome = model.getNome();
 	}
 }
