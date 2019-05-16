@@ -4,8 +4,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.edward.restfull.domain.Sala;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,14 +31,4 @@ public class SalaModel {
 		this.tipo = new TipoSalaModel(domain.getTipo());
 		this.capacidade = domain.getCapacidade();
 	}
-	
-	@JsonIgnore
-	public 	TipoSalaModel getTipoSalaModel() {
-		return this.tipo;
-	}
-	
-	public String getTipo() {
-		return this.tipo.getNome();
-	}
-	
 }

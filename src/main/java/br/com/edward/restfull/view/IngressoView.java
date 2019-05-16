@@ -15,10 +15,10 @@ public class IngressoView {
 	private Double preco;
 	
 	public IngressoView(IngressoModel model) {
-		this.filme = model.getSessao().getFilme();
-		this.audio = model.getSessao().getAudio();
-		this.sala = model.getSessao().getSala();
-		this.tipoSala = model.getSessao().getTipoSala();
+		this.filme = model.getSessao().getFilme().getNome();
+		this.audio = model.getSessao().getAudio().getNome();
+		this.sala = model.getSessao().getSala().getNome();
+		this.tipoSala = model.getSessao().getSala().getTipo().getNome();
 		this.preco = model.getPreco();
 	}
 }

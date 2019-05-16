@@ -30,9 +30,9 @@ public class IngressoModel {
 	
 	public Double getPreco() {
 		if (EnunTipoIngresso.INTEIRA.equals(this.preco)) {
-			return this.sessao.getIngressoInteira();
+			return this.getSessao().getSala().getTipo().getPreco();
 		} else {
-			return this.sessao.getIngressoMeiaEntrada();
+			return this.getSessao().getSala().getTipo().getMeiaEntrada();
 		}
 	}
 	

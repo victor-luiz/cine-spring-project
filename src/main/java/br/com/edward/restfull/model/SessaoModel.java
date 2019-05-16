@@ -30,47 +30,4 @@ public class SessaoModel {
 		this.sala = new SalaModel(domain.getSala());
 		this.audio = new AudioModel(domain.getAudio());
 	}
-	
-	@JsonIgnore
-	public Long getFilmeId() {
-		return this.filme.getId();
-	}
-	
-	@JsonIgnore
-	public Long getSalaId() {
-		return this.sala.getId();
-	}
-	
-	@JsonIgnore
-	public Long getAudioId() {
-		return this.audio.getId();
-	}
-	
-	public String getFilme() {
-		return this.filme.getNome();
-	}
-	
-	public String getCategoria() {
-		return this.filme.getCategoria();
-	}
-	
-	public String getSala() {
-		return this.sala.getNome();
-	}
-	
-	public String getAudio() {
-		return this.audio.getNome();
-	}
-	
-	public String getTipoSala() {
-		return this.sala.getTipo();
-	}
-	
-	public Double getIngressoInteira() {
-		return this.sala.getTipoSalaModel().getPreco();
-	}
-	
-	public Double getIngressoMeiaEntrada() {
-		return this.sala.getTipoSalaModel().getMeiaEntrada();
-	}
 }

@@ -6,8 +6,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.edward.restfull.domain.Filme;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,15 +36,5 @@ public class FilmeModel {
 		this.ano = domain.getAno();
 		this.sinopse = Objects.nonNull(domain.getSinopse()) ? domain.getSinopse() : "-";
 		this.categoria = new CategoriaModel(domain.getCategoria());
-	}
-	
-	@JsonIgnore
-	public Long getIdCategoria() {
-		return this.categoria.getId();
-	}
-	
-	public String getCategoria() {
-		return this.categoria.getNome();
-	}
-	
+	}	
 }
