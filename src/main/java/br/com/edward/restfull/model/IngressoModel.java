@@ -26,7 +26,6 @@ public class IngressoModel {
 		this.id = domain.getId();
 		this.sessao = new SessaoModel(domain.getSessao());
 		this.lugar = domain.getLugar();
-		this.preco = EnunTipoIngresso.INTEIRA;
 	}
 	
 	public Double getPreco() {
