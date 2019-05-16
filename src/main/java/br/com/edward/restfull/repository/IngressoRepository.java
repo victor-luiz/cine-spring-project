@@ -3,9 +3,9 @@ package br.com.edward.restfull.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.edward.restfull.domain.Sessao;
+import br.com.edward.restfull.domain.Ingresso;
 
 @Repository
-public interface SessaoRepository extends JpaRepository<Sessao, Long> {
-	
+public interface IngressoRepository extends JpaRepository<Ingresso, Long>{
+
 }

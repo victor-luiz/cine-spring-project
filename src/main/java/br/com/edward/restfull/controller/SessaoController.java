@@ -3,6 +3,8 @@ package br.com.edward.restfull.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,7 @@ public class SessaoController {
 	private SessaoService service;
 	
 	@PostMapping("/cadastrar")
-	public SessaoModel cadastrar(@RequestBody SessaoModel model) {
+	public SessaoModel cadastrar(@Valid @RequestBody SessaoModel model) {
 		return new SessaoModel(service.cadastrar(model));
 	}
 	

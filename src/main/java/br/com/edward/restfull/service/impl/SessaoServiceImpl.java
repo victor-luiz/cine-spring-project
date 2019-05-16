@@ -72,6 +72,10 @@ public class SessaoServiceImpl implements SessaoService{
 		return sessao;		
 	}
 	
+	@Override
+	public Optional<Sessao> findById(Long id) {
+		return repository.findById(id);
+	}
 	
 	@Override
 	public Sessao consultar(Long id) {

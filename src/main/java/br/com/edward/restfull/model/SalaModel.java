@@ -1,5 +1,9 @@
 package br.com.edward.restfull.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.edward.restfull.domain.Sala;
@@ -11,22 +15,32 @@ import lombok.NoArgsConstructor;
 public class SalaModel {
 	
 	private Long id;
+	
+	@NotNull
+	@Length(min = 3, max = 10)
 	private String nome;
+	
+	@NotNull
 	private TipoSalaModel tipo;
+	
+	@NotNull
+	private Integer capacidade;
 	
 	public SalaModel(Sala domain) {
 		
 		this.id = domain.getId();
 		this.nome = domain.getNome();
 		this.tipo = new TipoSalaModel(domain.getTipo());
+		this.capacidade = domain.getCapacidade();
 	}
 	
 	@JsonIgnore
-	public Long getTipoSalaId() {
-		return this.tipo.getId();
+	public 	TipoSalaModel getTipoSalaModel() {
+		return this.tipo;
 	}
 	
 	public String getTipo() {
 		return this.tipo.getNome();
 	}
+	
 }

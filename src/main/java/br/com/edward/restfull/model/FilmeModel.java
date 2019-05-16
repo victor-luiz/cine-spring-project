@@ -2,6 +2,10 @@ package br.com.edward.restfull.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.edward.restfull.domain.Filme;
@@ -13,9 +17,19 @@ import lombok.NoArgsConstructor;
 public class FilmeModel {
 	
 	private Long id;
+	
+	@NotNull
+	@Length(min = 3, max = 124)
 	private String nome;
+
+	@NotNull
 	private Integer ano;
+	
+	@NotNull
+	@Length(min = 3, max = 500)
 	private String sinopse;
+	
+	@NotNull
 	private CategoriaModel categoria;
 	
 	public FilmeModel(Filme domain) {

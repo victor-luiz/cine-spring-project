@@ -1,5 +1,7 @@
 package br.com.edward.restfull.model;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.edward.restfull.domain.Sessao;
@@ -11,8 +13,14 @@ import lombok.NoArgsConstructor;
 public class SessaoModel {
 	
 	private Long id;
+	
+	@NotNull
 	private FilmeModel filme;
+	
+	@NotNull
 	private SalaModel sala;
+	
+	@NotNull
 	private AudioModel audio;
 	
 	public SessaoModel(Sessao domain) {
@@ -42,11 +50,27 @@ public class SessaoModel {
 		return this.filme.getNome();
 	}
 	
+	public String getCategoria() {
+		return this.filme.getCategoria();
+	}
+	
 	public String getSala() {
 		return this.sala.getNome();
 	}
 	
 	public String getAudio() {
 		return this.audio.getNome();
+	}
+	
+	public String getTipoSala() {
+		return this.sala.getTipo();
+	}
+	
+	public Double getIngressoInteira() {
+		return this.sala.getTipoSalaModel().getPreco();
+	}
+	
+	public Double getIngressoMeiaEntrada() {
+		return this.sala.getTipoSalaModel().getMeiaEntrada();
 	}
 }

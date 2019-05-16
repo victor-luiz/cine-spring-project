@@ -3,7 +3,10 @@ package br.com.edward.restfull.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +24,13 @@ public class TipoSalaController {
 	TipoSalaService service;
 	
 	@PostMapping("/adicionar")
-	public TipoSalaModel adicionar(@RequestBody TipoSalaModel model) {
-		return new TipoSalaModel(service.adicionar(model));
+	public TipoSalaModel adicionar(@Valid @RequestBody TipoSalaModel model, BindingResult bindingResult) {
+	
+		if(!bindingResult.hasErrors()) {
+			return new TipoSalaModel(service.adicionar(model));
+		}
+		
+		throw new RuntimeException("Model invalida");
 	}
 	
 	@GetMapping("/listar")
