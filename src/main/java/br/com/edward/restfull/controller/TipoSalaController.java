@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.edward.restfull.model.TipoSalaModel;
 import br.com.edward.restfull.service.TipoSalaService;
+import br.com.edward.restfull.view.TipoSalaView;
 
 @RestController
 @RequestMapping("/tipo-sala")
@@ -24,18 +25,18 @@ public class TipoSalaController {
 	TipoSalaService service;
 	
 	@PostMapping("/adicionar")
-	public TipoSalaModel adicionar(@Valid @RequestBody TipoSalaModel model, BindingResult bindingResult) {
+	public TipoSalaView adicionar(@Valid @RequestBody TipoSalaModel model, BindingResult bindingResult) {
 	
 		if(!bindingResult.hasErrors()) {
-			return new TipoSalaModel(service.adicionar(model));
+			return new TipoSalaView(new TipoSalaModel(service.adicionar(model)));
 		}
 		
 		throw new RuntimeException("Model invalida");
 	}
 	
 	@GetMapping("/listar")
-	public List<TipoSalaModel> adicionar() {
-		return service.listar().stream().map(TipoSalaModel::new).collect(Collectors.toList());
+	public List<TipoSalaView> adicionar() {
+		return service.listar().stream().map(TipoSalaModel::new).map(TipoSalaView::new).collect(Collectors.toList());
 	}
 	
 }

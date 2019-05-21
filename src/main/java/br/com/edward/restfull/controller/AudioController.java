@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.edward.restfull.model.AudioModel;
 import br.com.edward.restfull.service.AudioService;
+import br.com.edward.restfull.view.AudioView;
 
 @RestController
 @RequestMapping("/audio")
@@ -24,17 +25,17 @@ public class AudioController {
 	private AudioService service;
 	
 	@PostMapping("/adicionar")
-	public AudioModel adicionar(@Valid @RequestBody AudioModel model, BindingResult bindingResult) {
+	public AudioView adicionar(@Valid @RequestBody AudioModel model, BindingResult bindingResult) {
 	
 		if(!bindingResult.hasErrors()) {
-			return new AudioModel(service.adicionar(model));
+			return new AudioView(new AudioModel(service.adicionar(model)));
 		}
 		
 		throw new RuntimeException("Model invalida");
 	}
 	
 	@GetMapping("/listar")
-	public List<AudioModel> listar(){
-		return service.listar().stream().map(AudioModel::new).collect(Collectors.toList());
+	public List<AudioView> listar(){
+		return service.listar().stream().map(AudioModel::new).map(AudioView::new).collect(Collectors.toList());
 	}
 }

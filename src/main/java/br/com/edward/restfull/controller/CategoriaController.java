@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.edward.restfull.model.CategoriaModel;
 import br.com.edward.restfull.service.CategoriaService;
+import br.com.edward.restfull.view.CategoriaView;
 
 @RestController
 @RequestMapping("/categoria")
@@ -26,18 +27,18 @@ public class CategoriaController {
 	private CategoriaService service;
 	
 	@PostMapping("/cadastrar")
-	public CategoriaModel cadastrar(@Valid @RequestBody CategoriaModel model, BindingResult bindingResult) {
+	public CategoriaView cadastrar(@Valid @RequestBody CategoriaModel model, BindingResult bindingResult) {
 	
 		if(!bindingResult.hasErrors()) {
-			return new CategoriaModel(service.cadastrar(model));
+			return new CategoriaView(new CategoriaModel(service.cadastrar(model)));
 		}
 		
 		throw new RuntimeException("Model invalida");
 	}
 	
 	@GetMapping("/listar")
-	public List<CategoriaModel> listar() {
-		return service.listar().stream().map(CategoriaModel::new).collect(Collectors.toList());
+	public List<CategoriaView> listar() {
+		return service.listar().stream().map(CategoriaModel::new).map(CategoriaView::new).collect(Collectors.toList());
 	}
 	
 	@DeleteMapping("/remover")

@@ -38,8 +38,7 @@ public class IngressoServiceImpl implements IngressoService {
 
 	@Override
 	public List<Ingresso> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAll();
 	}
 	
 }

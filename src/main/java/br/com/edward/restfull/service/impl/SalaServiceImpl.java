@@ -26,7 +26,7 @@ public class SalaServiceImpl implements SalaService{
 	@Override
 	public Sala adicionar(SalaModel model) {
 		
-		Optional<TipoSala> tipo = tipoSalaService.findById(model.getTipoSalaModel().getId()); 
+		Optional<TipoSala> tipo = tipoSalaService.findById(model.getTipo().getId()); 
 		if(tipo.isPresent()) {
 			return repository.save(new Sala(model, tipo.get()));
 		}

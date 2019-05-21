@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.edward.restfull.model.SalaModel;
 import br.com.edward.restfull.service.SalaService;
+import br.com.edward.restfull.view.SalaView;
 
 @RestController
 @RequestMapping("/sala")
@@ -24,18 +25,18 @@ public class SalaController {
 	private SalaService service;
 	
 	@PostMapping("/adicionar")
-	public SalaModel adicionar(@Valid @RequestBody SalaModel model, BindingResult bindingResult) {
+	public SalaView adicionar(@Valid @RequestBody SalaModel model, BindingResult bindingResult) {
 	
 		if(!bindingResult.hasErrors()) {
-			return new SalaModel(service.adicionar(model));
+			return new SalaView(new SalaModel(service.adicionar(model)));
 		}
 		
 		throw new RuntimeException("Model invalida");
 	}
 	
 	@GetMapping("/listar")
-	public List<SalaModel> listar() {
-		return service.listar().stream().map(SalaModel::new).collect(Collectors.toList());
+	public List<SalaView> listar() {
+		return service.listar().stream().map(SalaModel::new).map(SalaView::new).collect(Collectors.toList());
 	}
 
 }
