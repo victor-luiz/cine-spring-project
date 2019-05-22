@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.edward.restfull.model.SessaoModel;
 import br.com.edward.restfull.service.SessaoService;
+import br.com.edward.restfull.view.SessaoView;
 
 @RestController
 @RequestMapping("/sessao")
@@ -25,17 +26,17 @@ public class SessaoController {
 	private SessaoService service;
 	
 	@PostMapping("/cadastrar")
-	public SessaoModel cadastrar(@Valid @RequestBody SessaoModel model) {
-		return new SessaoModel(service.cadastrar(model));
+	public SessaoView cadastrar(@Valid @RequestBody SessaoModel model) {
+		return new SessaoView(new SessaoModel(service.cadastrar(model)));
 	}
 	
 	@GetMapping("/listar")
-	public List<SessaoModel> listar() {
-		return service.listar().stream().map(SessaoModel::new).collect(Collectors.toList());
+	public List<SessaoView> listar() {
+		return service.listar().stream().map(SessaoModel::new).map(SessaoView::new).collect(Collectors.toList());
 	}
 	
 	@DeleteMapping("/remover")
-	public SessaoModel remover(@RequestParam Long id) {
+	public SessaoModel remover(@RequestParam Long id) {	
 		return new SessaoModel((service.remover(id)));
 	}
 	

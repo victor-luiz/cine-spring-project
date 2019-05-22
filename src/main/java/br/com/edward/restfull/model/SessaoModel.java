@@ -2,8 +2,6 @@ package br.com.edward.restfull.model;
 
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.edward.restfull.domain.Sessao;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

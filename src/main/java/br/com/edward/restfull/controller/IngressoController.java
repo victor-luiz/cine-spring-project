@@ -35,8 +35,8 @@ public class IngressoController {
 	}
 	
 	@GetMapping("/listar")
-	public List<IngressoModel> listar() {
-		return service.listar().stream().map(IngressoModel::new).collect(Collectors.toList());
+	public List<IngressoView> listar() {
+		return service.listar().stream().map(IngressoModel::new).map(IngressoView::new).collect(Collectors.toList());
 	}
 	
 //	@DeleteMapping("/remover")

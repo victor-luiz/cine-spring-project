@@ -38,11 +38,11 @@ public class SessaoServiceImpl implements SessaoService{
 	@Override
 	public Sessao cadastrar(SessaoModel model) {
 		
-		Optional<Sala> sala = salaSercice.findById(model.getSalaId());
+		Optional<Sala> sala = salaSercice.findById(model.getSala().getId());
 		if (sala.isPresent()) {
-			Optional<Filme> filme = filmeSercice.findById(model.getFilmeId());
+			Optional<Filme> filme = filmeSercice.findById(model.getFilme().getId());
 			if (filme.isPresent()) {
-				Optional<Audio> audio = audioSercice.findById(model.getAudioId());
+				Optional<Audio> audio = audioSercice.findById(model.getAudio().getId());
 				if (audio.isPresent()) {
 					return repository.save(new Sessao(model, filme.get(), sala.get(), audio.get()));
 				}

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.edward.restfull.model.FilmeModel;
 import br.com.edward.restfull.service.FilmeService;
+import br.com.edward.restfull.view.FilmeView;
 
 @RestController
 @RequestMapping("/filme")
@@ -24,18 +25,18 @@ public class FilmeController {
 	private FilmeService service;
 	
 	@PostMapping("/cadastrar")
-	public FilmeModel cadastrar(@Valid @RequestBody FilmeModel model, BindingResult bindingResult) {
+	public FilmeView cadastrar(@Valid @RequestBody FilmeModel model, BindingResult bindingResult) {
 	
 		if(!bindingResult.hasErrors()) {
-			return new FilmeModel(service.cadastrar(model));
+			return new FilmeView(new FilmeModel(service.cadastrar(model)));
 		}
 		
 		throw new RuntimeException("Model invalida");
 	}
 	
 	@GetMapping("/listar")
-	public List<FilmeModel> listar(){
-		return service.listar().stream().map(FilmeModel::new).collect(Collectors.toList());
+	public List<FilmeView> listar(){
+		return service.listar().stream().map(FilmeModel::new).map(FilmeView::new).collect(Collectors.toList());
 	}
 	
 }
