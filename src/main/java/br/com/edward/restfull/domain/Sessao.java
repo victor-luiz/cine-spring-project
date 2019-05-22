@@ -41,10 +41,13 @@ public class Sessao {
     @JoinColumn(name = "audio_id")
 	private Audio audio;
 	
+	private Integer[] lugares;
+	
 	public Sessao(SessaoModel model, Filme filme, Sala sala, Audio audio) {
 		this.filme = filme;
 		this.sala = sala;
 		this.audio = audio;
+		this.lugares = new Integer[sala.getCapacidade()];
 	}
 
 }

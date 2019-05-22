@@ -21,11 +21,14 @@ public class SessaoModel {
 	@NotNull
 	private AudioModel audio;
 	
+	private Integer[] lugares;
+	
 	public SessaoModel(Sessao domain) {
 		
 		this.id = domain.getId();
 		this.filme = new FilmeModel(domain.getFilme());
 		this.sala = new SalaModel(domain.getSala());
 		this.audio = new AudioModel(domain.getAudio());
+		this.lugares = domain.getLugares(); 
 	}
 }
