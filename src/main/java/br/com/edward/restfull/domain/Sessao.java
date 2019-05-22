@@ -41,13 +41,26 @@ public class Sessao {
     @JoinColumn(name = "audio_id")
 	private Audio audio;
 	
-	private Integer[] lugares;
+	private Boolean[] lugares;
 	
 	public Sessao(SessaoModel model, Filme filme, Sala sala, Audio audio) {
+		
 		this.filme = filme;
 		this.sala = sala;
 		this.audio = audio;
-		this.lugares = new Integer[sala.getCapacidade()];
+		this.lugares = new Boolean[sala.getCapacidade()];
 	}
-
+	
+	public Boolean addLugar(Integer lugar) {
+		
+		if (this.lugares[lugar]) {
+	
+			this.lugares[lugar] = true;
+			return true;
+		} else {
+			
+			return false;
+		}
+	}
 }
+

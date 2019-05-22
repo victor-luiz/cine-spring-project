@@ -21,7 +21,7 @@ public class SessaoModel {
 	@NotNull
 	private AudioModel audio;
 	
-	private Integer[] lugares;
+	private Boolean[] lugares;
 	
 	public SessaoModel(Sessao domain) {
 		
