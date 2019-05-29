@@ -3,7 +3,7 @@ package br.com.edward.restfull.model;
 import javax.validation.constraints.NotNull;
 
 import br.com.edward.restfull.domain.Ingresso;
-import br.com.edward.restfull.enuns.EnunTipoIngresso;
+import br.com.edward.restfull.enuns.EnumTipoIngresso;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +20,7 @@ public class IngressoModel {
 	private Integer lugar;
 	
 	@NotNull
-	private EnunTipoIngresso preco;
+	private EnumTipoIngresso preco;
 	
 	public IngressoModel(Ingresso domain) {
 		this.id = domain.getId();
@@ -29,7 +29,7 @@ public class IngressoModel {
 	}
 	
 	public Double getPreco() {
-		if (EnunTipoIngresso.INTEIRA.equals(this.preco)) {
+		if (EnumTipoIngresso.INTEIRA.equals(this.preco)) {
 			return this.getSessao().getSala().getTipo().getPreco();
 		} else {
 			return this.getSessao().getSala().getTipo().getMeiaEntrada();
