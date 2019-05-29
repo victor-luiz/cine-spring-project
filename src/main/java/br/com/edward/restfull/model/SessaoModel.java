@@ -1,5 +1,8 @@
 package br.com.edward.restfull.model;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.constraints.NotNull;
 
 import br.com.edward.restfull.domain.Sessao;
@@ -21,7 +24,8 @@ public class SessaoModel {
 	@NotNull
 	private AudioModel audio;
 	
-	private Integer[] lugares;
+	
+	private List<LugaresModel> lugares;
 	
 	public SessaoModel(Sessao domain) {
 		
@@ -29,6 +33,6 @@ public class SessaoModel {
 		this.filme = new FilmeModel(domain.getFilme());
 		this.sala = new SalaModel(domain.getSala());
 		this.audio = new AudioModel(domain.getAudio());
-		this.lugares = domain.getLugares(); 
+		this.lugares = domain.getLugares().stream().map(LugaresModel::new).collect(Collectors.toList());
 	}
 }
