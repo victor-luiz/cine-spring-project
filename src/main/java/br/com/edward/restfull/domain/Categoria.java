@@ -1,7 +1,6 @@
 package br.com.edward.restfull.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,8 +36,7 @@ public class Categoria {
     private List<Filme> filmes;
 	
 	public Categoria(CategoriaModel model) {
-		this.nome = model.getNome();
-		this.filmes = model.getFilmes().stream().map(Filme::new).collect(Collectors.toList()); 
+		this.nome = model.getNome(); 
 	}
 	
 }

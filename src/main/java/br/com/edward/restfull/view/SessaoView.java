@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class SessaoView {
 	
 	private String filme;
-	private String categoria;
+//	private String categoria;
 	private String audio;
 	private String sala;
 	private String tipoSala;
@@ -22,7 +22,7 @@ public class SessaoView {
 		this.sala = model.getSala().getNome();
 		this.tipoSala = model.getSala().getTipo().getNome();
 		this.preco = model.getSala().getTipo().getPreco();
-		this.categoria = model.getFilme().getCategoria().getNome();
+		//this.categoria = model.getFilme().getCategoria().getNome();
 		this.meiaEntrada = model.getSala().getTipo().getMeiaEntrada();
 	}
 }

@@ -1,7 +1,6 @@
 package br.com.edward.restfull.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,10 +42,10 @@ public class Filme {
 	@OneToMany(mappedBy = "filme", targetEntity = FilmeCategoria.class, cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private List<Categoria> categorias;
 	
-	public Filme(FilmeModel model) {
+	public Filme(FilmeModel model, List<Categoria> categorias) {
 		this.nome = model.getNome();
 		this.ano = model.getAno();
 		this.sinopse = model.getSinopse();
-		this.categorias = model.getCategorias().stream().map(Categoria::new).collect(Collectors.toList());
+		this.categorias = categorias;
 	}
 }

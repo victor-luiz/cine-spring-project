@@ -1,3 +1,4 @@
+
 package br.com.edward.restfull.controller;
 
 import java.util.List;
@@ -34,6 +35,8 @@ public class CategoriaController {
 		}
 		
 		throw new RuntimeException("Model invalida");
+		
+		//return model;
 	}
 	
 	@GetMapping("/listar")

@@ -1,8 +1,5 @@
 package br.com.edward.restfull.model;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -21,12 +18,12 @@ public class CategoriaModel {
 	@Length(min = 3, max = 20)
 	private String nome;
 	
-	private List<FilmeModel> filmes;
+	//private List<FilmeModel> filmes;
 	
 	public CategoriaModel(Categoria domain) {
 		this.id = domain.getId();
 		this.nome = domain.getNome();
-		this.filmes = domain.getFilmes().stream().map(FilmeModel::new).collect(Collectors.toList()); 
+		//this.filmes = domain.getFilmes().stream().map(FilmeModel::new).collect(Collectors.toList()); 
 	}
 	
 }
