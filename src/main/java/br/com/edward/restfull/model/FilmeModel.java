@@ -1,6 +1,8 @@
 package br.com.edward.restfull.model;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
@@ -24,17 +26,17 @@ public class FilmeModel {
 	private Integer ano;
 	
 	@NotNull
-	@Length(min = 3, max = 500)
+	@Length(min = 3, max = 2000)
 	private String sinopse;
 	
-	@NotNull
-	private CategoriaModel categoria;
+	private List<CategoriaModel> categorias;
 	
 	public FilmeModel(Filme domain) {
+		
 		this.id = domain.getId();
 		this.nome = domain.getNome();
 		this.ano = domain.getAno();
 		this.sinopse = Objects.nonNull(domain.getSinopse()) ? domain.getSinopse() : "-";
-		this.categoria = new CategoriaModel(domain.getCategoria());
+		this.categorias = domain.getCategorias().stream().map(CategoriaModel::new).collect(Collectors.toList());
 	}	
 }

@@ -1,5 +1,8 @@
 package br.com.edward.restfull.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,8 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -38,15 +40,13 @@ public class Filme {
 	@Column(name = "sinopse")
 	private String sinopse;
 	
-	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoria_id")
-	private Categoria categoria;
+	@OneToMany(mappedBy = "filme", targetEntity = FilmeCategoria.class, cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    private List<Categoria> categorias;
 	
-	
-	public Filme(FilmeModel model, Categoria categoria) {
+	public Filme(FilmeModel model) {
 		this.nome = model.getNome();
 		this.ano = model.getAno();
 		this.sinopse = model.getSinopse();
-		this.categoria = categoria;
+		this.categorias = model.getCategorias().stream().map(Categoria::new).collect(Collectors.toList());
 	}
 }
