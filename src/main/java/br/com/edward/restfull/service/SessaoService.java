@@ -18,4 +18,6 @@ public interface SessaoService {
 
 	Optional<Sessao> findById(Long id);
 
+	void cadastarSemana(SessaoModel model);
+
 }

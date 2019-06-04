@@ -30,6 +30,11 @@ public class SessaoController {
 		return new SessaoView(new SessaoModel(service.cadastrar(model)));
 	}
 	
+	@PostMapping("/cadastrar_semana")
+	public void cadastrarSemana(@Valid @RequestBody SessaoModel model) {
+		/*returnnew SessaoView(new SessaoModel(*/service.cadastarSemana(model); 
+	}
+	
 	@GetMapping("/listar")
 	public List<SessaoView> listar() {
 		return service.listar().stream().map(SessaoModel::new).map(SessaoView::new).collect(Collectors.toList());

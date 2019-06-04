@@ -21,8 +21,6 @@ public class CategoriaServiceImpl implements CategoriaService {
 
 	@Override
 	public Categoria cadastrar(CategoriaModel model) {
-	
-		System.out.println("---------> Nome: " + model.getNome());
 		
 		return repository.save(new Categoria(model));
 	}

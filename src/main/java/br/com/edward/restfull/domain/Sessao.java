@@ -1,6 +1,10 @@
 package br.com.edward.restfull.domain;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,10 +44,18 @@ public class Sessao {
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "audio_id")
 	private Audio audio;
-
 	
-	public Sessao(SessaoModel model, Filme filme, Sala sala, Audio audio) {
-		
+	@NotNull
+	@Column(name = "dia")
+	private LocalDate dia;
+	
+	@NotNull
+	@Column(name = "horario")
+	private LocalTime horario;
+	
+	public Sessao(SessaoModel model, Filme filme, Sala sala, Audio audio, LocalDate dia) {
+		this.horario = model.getHorario();
+		this.dia = dia;
 		this.filme = filme;
 		this.sala = sala;
 		this.audio = audio;

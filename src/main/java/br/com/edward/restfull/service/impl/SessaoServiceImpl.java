@@ -1,5 +1,6 @@
 package br.com.edward.restfull.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,7 +45,7 @@ public class SessaoServiceImpl implements SessaoService{
 			if (filme.isPresent()) {
 				Optional<Audio> audio = audioSercice.findById(model.getAudio().getId());
 				if (audio.isPresent()) {
-					return repository.save(new Sessao(model, filme.get(), sala.get(), audio.get()));
+					return repository.save(new Sessao(model, filme.get(), sala.get(), audio.get(),model.getDia()));
 				}
 			} else {
 				throw new RuntimeException("Filme não encontrado");
@@ -52,6 +53,40 @@ public class SessaoServiceImpl implements SessaoService{
 		} else {
 			throw new RuntimeException("Sala não encontrada");
 		}
+		throw new RuntimeException("Audio não encontrado");
+	}
+	
+	@Override
+	public void cadastarSemana(SessaoModel model) {
+		Optional<Sala> sala = salaSercice.findById(model.getSala().getId());
+		
+		if (sala.isPresent()) {
+			
+			Optional<Filme> filme = filmeSercice.findById(model.getFilme().getId());
+			if (filme.isPresent()) {
+				
+				Optional<Audio> audio = audioSercice.findById(model.getAudio().getId());
+				if (audio.isPresent()) {
+					
+					LocalDate dia = LocalDate.now();
+					for (Integer i = 0; i < 7; i++) {
+						
+						dia = dia.plusDays(i);
+						//System.out.println("---------> dia: " + dia);
+						repository.save(new Sessao(model, filme.get(), sala.get(), audio.get(),dia));
+					}
+					
+					throw new RuntimeException("Sessões adicionadas com sucesso");
+				}
+			} else {
+				
+				throw new RuntimeException("Filme não encontrado");
+			}
+		} else {
+			
+			throw new RuntimeException("Sala não encontrada");
+		}
+		
 		throw new RuntimeException("Audio não encontrado");
 	}
 
