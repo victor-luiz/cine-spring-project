@@ -1,23 +1,6 @@
-server:
-  port: 8080
-spring:
-  application:
-    name: projeto-spring-mvc
-  jackson:
-    serialization:
-      write_dates_as_timestamps: false
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:./banco/h2db_banco
-    username: admin
-    password: admin
-  jpa:
-    properties:
-      hibernate:
-        jdbc:
-          lob.non_contextual_creation: true
-        show_sql: true
-        format_sql: true
-        dialect: org.hibernate.dialect.H2Dialect
-        hbm2ddl:
-          auto: update
+spring.datasource.url=jdbc:postgresql://localhost:5432/cinema
+spring.datasource.username=postgres
+spring.datasource.password=admin
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.show-sql=true
