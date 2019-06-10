@@ -1,17 +1,11 @@
 package br.com.edward.restfull.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 
 @NoArgsConstructor
 @Getter
@@ -19,16 +13,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "filme_categoria")
 public class FilmeCategoria {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "filme_categoria_gen")
+	@SequenceGenerator(name = "filme_categoria_gen", sequenceName = "filme_categoria_id_seq", allocationSize = -1)
 	private Long id;
-	
-	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+
+	@ManyToOne
     @JoinColumn(name = "filme_id")
 	private Filme filme;
 	
-	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+	@ManyToOne
     @JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 	

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
+import br.com.edward.restfull.domain.FilmeCategoria;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.edward.restfull.domain.Filme;
@@ -24,6 +25,12 @@ public class FilmeModel {
 
 	@NotNull
 	private Integer ano;
+
+	@NotNull
+	private Integer duracao;
+
+	@NotNull
+	private Integer classificacao;
 	
 	@NotNull
 	@Length(min = 3, max = 2000)
@@ -37,6 +44,8 @@ public class FilmeModel {
 		this.nome = domain.getNome();
 		this.ano = domain.getAno();
 		this.sinopse = Objects.nonNull(domain.getSinopse()) ? domain.getSinopse() : "-";
-		this.categorias = domain.getCategorias().stream().map(CategoriaModel::new).collect(Collectors.toList());
+		this.categorias = domain.getCategorias().stream().map(FilmeCategoria::getCategoria).map(CategoriaModel::new).collect(Collectors.toList());
+		this.classificacao = domain.getClassificacao();
+		this.duracao = domain.getDuracao();
 	}	
 }

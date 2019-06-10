@@ -4,6 +4,8 @@ import br.com.edward.restfull.model.IngressoModel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @Getter
 public class IngressoView {
@@ -12,7 +14,7 @@ public class IngressoView {
 	private String audio;
 	private String sala;
 	private String tipoSala;
-	private Double preco;
+	private BigDecimal preco;
 	
 	public IngressoView(IngressoModel model) {
 		this.filme = model.getSessao().getFilme().getNome();

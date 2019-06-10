@@ -1,20 +1,13 @@
 package br.com.edward.restfull.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import br.com.edward.restfull.model.IngressoModel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 
@@ -24,14 +17,14 @@ import lombok.NoArgsConstructor;
 public class Ingresso {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ingresso_gen")
+	@SequenceGenerator(name = "ingresso_gen", sequenceName = "ingresso_id_seq", allocationSize = -1)
 	private Long id;
 	
-	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoria_id")
+	@ManyToOne
+    @JoinColumn(name = "sessao_id")
 	private Sessao sessao;
-	
-	@Column(name = "lugar")
+
 	private Integer lugar;
 	
 	public Ingresso(IngressoModel model, Sessao sessao) {

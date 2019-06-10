@@ -8,6 +8,8 @@ import br.com.edward.restfull.domain.TipoSala;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @Getter
 public class TipoSalaModel {
@@ -19,9 +21,9 @@ public class TipoSalaModel {
 	private String nome;
 	
 	@NotNull
-	private Double preco;
+	private BigDecimal preco;
 	
-	private Double meiaEntrada;
+	private BigDecimal meiaEntrada;
 	
 	
 	public TipoSalaModel(TipoSala domain) {

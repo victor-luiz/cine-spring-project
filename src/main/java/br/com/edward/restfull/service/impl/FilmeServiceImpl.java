@@ -46,10 +46,12 @@ public class FilmeServiceImpl implements FilmeService{
 			}
 		}
 		
-		Filme filme = new Filme(model, categorias);
+		Filme filme = new Filme(model);
+
+		repository.save(filme);
 		
 		filmeCategoriaService.addFilmeCategorias(filme, categorias);
-		return repository.save(filme);
+		return filme;
 	}
 
 	@Override

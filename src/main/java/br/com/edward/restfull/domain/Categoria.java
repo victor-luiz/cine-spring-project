@@ -2,21 +2,15 @@ package br.com.edward.restfull.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import br.com.edward.restfull.model.CategoriaModel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 
@@ -25,15 +19,14 @@ import lombok.NoArgsConstructor;
 public class Categoria {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "categoria_gen")
+	@SequenceGenerator(name = "categoria_gen", sequenceName = "categoria_id_seq", allocationSize = -1)
 	private Long id;
-	
-	@NotNull
-	@Column(name="nome", length = 20)
+
 	private String nome;
-	
-	@OneToMany(mappedBy = "categoria", targetEntity = FilmeCategoria.class, cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    private List<Filme> filmes;
+
+	@OneToMany(mappedBy = "categoria")
+    private List<FilmeCategoria> filmes;
 	
 	public Categoria(CategoriaModel model) {
 		this.nome = model.getNome(); 

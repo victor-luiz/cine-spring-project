@@ -15,11 +15,17 @@ public class FilmeView {
 	private Long id;
 	private String nome;
 	private List<String> categorias;
+	private Integer duracao;
+	private Integer classificacao;
+	private String sinopse;
 	
 	public FilmeView(FilmeModel model) {
-		
+
 		this.id = model.getId();
 		this.nome = model.getNome();
 		this.categorias = model.getCategorias().stream().map(CategoriaModel::getNome).collect(Collectors.toList());
+		this.duracao = model.getDuracao();
+		this.classificacao = model.getClassificacao();
+		this.sinopse = model.getSinopse();
 	}
 }

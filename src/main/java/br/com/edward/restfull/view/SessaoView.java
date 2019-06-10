@@ -21,8 +21,8 @@ public class SessaoView {
 		this.audio = model.getAudio().getNome();
 		this.sala = model.getSala().getNome();
 		this.tipoSala = model.getSala().getTipo().getNome();
-		this.preco = model.getSala().getTipo().getPreco();
+		//this.preco = model.getSala().getTipo().getPreco();
 		//this.categoria = model.getFilme().getCategoria().getNome();
-		this.meiaEntrada = model.getSala().getTipo().getMeiaEntrada();
+		//this.meiaEntrada = model.getSala().getTipo().getMeiaEntrada();
 	}
 }

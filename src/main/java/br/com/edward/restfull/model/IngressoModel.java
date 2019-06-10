@@ -7,6 +7,8 @@ import br.com.edward.restfull.enuns.EnumTipoIngresso;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @Getter
 public class IngressoModel {
@@ -28,7 +30,7 @@ public class IngressoModel {
 		this.lugar = domain.getLugar();
 	}
 	
-	public Double getPreco() {
+	public BigDecimal getPreco() {
 		if (EnumTipoIngresso.INTEIRA.equals(this.preco)) {
 			return this.getSessao().getSala().getTipo().getPreco();
 		} else {

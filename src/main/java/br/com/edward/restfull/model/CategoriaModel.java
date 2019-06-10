@@ -2,12 +2,14 @@ package br.com.edward.restfull.model;
 
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.edward.restfull.domain.Categoria;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 public class CategoriaModel {
@@ -23,7 +25,6 @@ public class CategoriaModel {
 	public CategoriaModel(Categoria domain) {
 		this.id = domain.getId();
 		this.nome = domain.getNome();
-		//this.filmes = domain.getFilmes().stream().map(FilmeModel::new).collect(Collectors.toList()); 
 	}
 	
 }
