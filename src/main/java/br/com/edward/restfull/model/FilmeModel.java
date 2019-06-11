@@ -31,9 +31,7 @@ public class FilmeModel {
 
 	@NotNull
 	private Integer classificacao;
-	
-	@NotNull
-	@Length(min = 3, max = 2000)
+
 	private String sinopse;
 	
 	private List<CategoriaModel> categorias;
